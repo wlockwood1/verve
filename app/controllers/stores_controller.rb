@@ -2,6 +2,7 @@ class StoresController < ApplicationController
   def index
     if params[:search].present?
       @stores = Store.near(params[:search], 50, :order => "distance")
+      # Instead of '50' above, based it on what user types in or dropdown menu
     else
       @stores = Store.distance_to_verve.limit(10)
     end

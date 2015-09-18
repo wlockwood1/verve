@@ -2,7 +2,7 @@ class Store < ActiveRecord::Base
   reverse_geocoded_by :latitude, :longitude
   after_validation :reverse_geocode  # auto-fetch address
 
-# Method to geocode or reverse_geocode based on what user passes in
+# Method to geocode or reverse_geocode based on what user passes in?
 
   def self.distance_to_verve
     near("5973 Avenida Encinas, Carlsbad, CA", 50000, :order => 'distance')

@@ -17,6 +17,7 @@
       %br
       = submit_tag "Search Nearby Stores", :name => nil, class: 'btn btn-default'
       %hr
+      -# Add in feature to search nearest with ## miles
 .stores.text-center
   %h1 Caribou Coffee Stores Nearby
   %table.table.table-condensed.table-striped.table-hover.text-center
@@ -26,15 +27,15 @@
       %th Latitude
       %th Longitude
       %th Distance from Address
-    - for store in @stores
-      %tr
-        %td= store.name
-        %td= store.address
-        %td= store.latitude
-        %td= store.longitude
-        %td= "#{store.distance.round(2)} miles"
-        %td= link_to "Show", store
-        %td= link_to "Edit", edit_store_path(store)
-        %td= link_to "Destroy", store, :confirm => 'Are you sure?', :method => :delete
+  - for store in @stores
+    %tr
+      %td= store.name
+      %td= store.address
+      %td= store.latitude
+      %td= store.longitude
+      %td= "#{store.distance.round(2)} miles"
+      %td= link_to "Show", store
+      %td= link_to "Edit", edit_store_path(store)
+      %td= link_to "Destroy", store, :confirm => 'Are you sure?', :method => :delete
 %p= link_to "New store", new_store_path
 -# Google maps view
