@@ -6,6 +6,10 @@ class StoresController < ApplicationController
     else
       @stores = Store.distance_to_verve.limit(10)
     end
+    @hash = Gmaps4rails.build_markers(@stores) do |store, marker|
+      marker.lat store.latitude
+      marker.lng store.longitude
+    end
   end
 
   def show

@@ -1,3 +1,6 @@
+%script{:src => "//maps.google.com/maps/api/js?v=3.13&amp;sensor=false&amp;libraries=geometry", :type => "text/javascript"}
+%script{:src => "//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js", :type => "text/javascript"}
+
 .import
   %h1.text-center Find a Caribou Coffee Near You!
   %p Submit a tab delimited (.tsv) file showing all stores. We will return the nearest store store to Verve's Carlsbad office. If you'd like to see stores near another address, search using the address box below.Make sure the table headers are name, address, city, state, postal_code, country, latitude, longitude and includes this information for each store.
@@ -27,15 +30,18 @@
       %th Latitude
       %th Longitude
       %th Distance from Address
-  - for store in @stores
-    %tr
-      %td= store.name
-      %td= store.address
-      %td= store.latitude
-      %td= store.longitude
-      %td= "#{store.distance.round(2)} miles"
-      %td= link_to "Show", store
-      %td= link_to "Edit", edit_store_path(store)
-      %td= link_to "Destroy", store, :confirm => 'Are you sure?', :method => :delete
+    - for store in @stores
+      %tr
+        %td= store.name
+        %td= store.address
+        %td= store.latitude
+        %td= store.longitude
+        %td= "#{store.distance.round(2)} miles"
+        %td= link_to "Show", store
+        %td= link_to "Edit", edit_store_path(store)
+        %td= link_to "Destroy", store, :confirm => 'Are you sure?', :method => :delete
 %p= link_to "New store", new_store_path
 -# Google maps view
+.col-md-6.text-center{:style => "width: 800px;"}
+  #map{:style => "width: 800px; height: 400px;"}
+  markers = handler.addMarkers(#{raw @hash.to_json});
