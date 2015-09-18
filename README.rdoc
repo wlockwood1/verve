@@ -1,0 +1,57 @@
+Challenge for Software Engineer or Frontend Engineer
+See our open jobs http://www.vervemobile.com/jobs/
+
+https://github.com/VerveWireless/software-challenge
+
+To better assess a candidates development skills, we would like to provide the following challenge. You have as much time as you’d like though we ask that you not spend more that a few hours.
+
+Project Description
+
+Imagine that Verve has just received a new advertising campaign from a national coffee franchise to promote their new Chocolate Macchiato. They will be delivering a tab separated document with each store location so we can drive foot traffic into each location. Geo targeted ads are typically target to a 5 mile radius around the business. Your task is to create a web interface that accepts file uploads, stores it in a database and then displays a list ordered ordered by distance from the Verve Carlsbad office ( 33.1243208, -117.32582479999996 ).
+
+Here’s what your web-based application must do:
+
+Your app must accept ( via a form ) a tab delimited file with the following columns: business name, address, city, state, postal code, country, latitude, longitude. The example file is named offers_poi.tsv is included in this repo.
+  - Research Ruby gems that accept file
+    - Ask Jeff what he means by 'via form'
+  - Make sure file is a tab delimited file (.tsv or .tab) - return error if not
+    - Ask Jeff if program should only accept .tsv files, or if program should convert files if not tsv
+  - Create Stores database, with above as columns. Make sure using correct data types for latitude and longitude
+  - Each row is new instance variable @store.
+  - Create basic tests (model & controller methods)
+
+Your app must parse the given file and store the information in a database.
+  - Research gems to parse files
+  - Should probably match and store info based on column name, or could search by array/hash. Key could be column names, values could be each row. Store['address'][i].
+  - Iterate through each row to store data via for or while loop?
+After upload, your application should display each location ordered by distance from the Verve Carlsbad office.
+  - Use geocoder gem
+  - Display address, and distance from
+  - Consider using zip-codes gem to get city & state from zip code
+
+
+(Bonus Points) Provide an api to query for locations near a given latitude and longitude.
+  -User searches latitude and longitude.
+Your application does not need to:
+
+handle authentication or authorization
+be written in any particular language or framework
+Bonus points for:
+
+• Being aesthetically pleasing
+• Using Google Maps
+  - Look at Google Maps Geocoding API
+• Using Ruby, Rails, Lua, Go, or PostGIS
+• TDD/BDD
+
+Your application should be easy to set up and should run on Mac OS X. It should not require any for-pay software.
+
+Evaluation
+
+Evaluation of your submission will be based not he following criteria. Additional, reviewers will attempt to access your familiarity with standard libraries. If your code submission is in Ruby or JavaScript, reviewers will attempt to access your experience with object-orented programming based on how you’ve structured your submission.
+
+Did you application fulfill the basic requirements?
+Did you document the method for setting up and running your application?
+Submission
+
+After completing the challenge submit it to your Verve contact or jspooner[at]vervemobile.com

@@ -1,0 +1,30 @@
+= form_for @store do |f|
+  %p
+    = f.label :name
+    %br
+    = f.text_field :name
+  %p
+    = f.label :address
+    %br
+    = f.text_field :address
+  %p
+    = f.label :city
+    %br
+    = f.text_field :city
+  %p
+    = f.label :state
+    %br
+    = f.text_field :state
+  %p
+    = f.label :postal_code
+    %br
+    = f.text_field :postal_code
+  %p
+    = f.label :latitude
+    %br
+    = f.text_field :latitude
+  %p
+    = f.label :longitude
+    %br
+    = f.text_field :longitude
+  %p= f.submit

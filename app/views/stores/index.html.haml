@@ -1,0 +1,40 @@
+.import
+  %h1.text-center Find a Caribou Coffee Near You!
+  %p Submit a tab delimited (.tsv) file showing all stores. We will return the nearest store store to Verve's Carlsbad office. If you'd like to see stores near another address, search using the address box below.Make sure the table headers are name, address, city, state, postal_code, country, latitude, longitude and includes this information for each store.
+  = form_tag import_stores_path, multipart: true do
+    = file_field_tag :file
+    %br
+    = submit_tag "Import"
+    %hr
+.search.text-center
+  = form_tag stores_path, :method => :get do
+    %p
+      Type in an address to search for stores near you! You can also search using latitude and longitude coordinates (Ex: 45.2154, -95.0325).
+      %br
+      %br
+      .col-md-6.text-center
+      = text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Type address or coordinates here'
+      %br
+      = submit_tag "Search Nearby Stores", :name => nil, class: 'btn btn-default'
+      %hr
+.stores.text-center
+  %h1 Caribou Coffee Stores Nearby
+  %table.table.table-condensed.table-striped.table-hover.text-center
+    %tr
+      %th Name
+      %th Address
+      %th Latitude
+      %th Longitude
+      %th Distance from Address
+    - for store in @stores
+      %tr
+        %td= store.name
+        %td= store.address
+        %td= store.latitude
+        %td= store.longitude
+        %td= "#{store.distance.round(2)} miles"
+        %td= link_to "Show", store
+        %td= link_to "Edit", edit_store_path(store)
+        %td= link_to "Destroy", store, :confirm => 'Are you sure?', :method => :delete
+%p= link_to "New store", new_store_path
+-# Google maps view
