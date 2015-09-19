@@ -23,11 +23,11 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-# Geocoding to caluclate distances
+# Geocoding to calculate distances between addresses
 gem 'geocoder'
 # Parse tsv files
 gem 'roo'
-# Google maps
+# Display Google Maps with markes for stores
 gem 'gmaps4rails'
 gem 'underscore-rails'
 # Use ActiveModel has_secure_password
@@ -44,6 +44,7 @@ group :development, :test do
   gem 'byebug'
   # Test with rspec
   gem 'rspec-rails'
+  #Debugging
   gem 'pry'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'

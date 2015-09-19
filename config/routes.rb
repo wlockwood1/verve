@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :stores do
+  resources :stores, only: [:index] do
     collection { post :import }
   end
 
