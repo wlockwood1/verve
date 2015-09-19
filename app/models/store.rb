@@ -32,6 +32,7 @@ class Store < ActiveRecord::Base
   def self.open_spreadsheet(file)
     case File.extname(file.original_filename)
     when ".tsv" then Roo::CSV.new(file.path, csv_options: {col_sep: "\t"})
+    when ".csv" then Roo::CSV.new(file.path)
     else raise "Unknown file type: #{file.original_filename}"
     end
   end

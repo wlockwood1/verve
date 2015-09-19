@@ -23,7 +23,7 @@
       -# Add in feature to search nearest with ## miles
 .stores.text-center
   %h1 Caribou Coffee Stores Nearby
-  %table.table.table-condensed.table-striped.table-hover.text-center
+  %table.table.table-condensed.table-hover.text-center
     %tr
       %th Name
       %th Address
@@ -44,4 +44,10 @@
 -# Google maps view
 .col-md-6.text-center{:style => "width: 800px;"}
   #map{:style => "width: 800px; height: 400px;"}
-  markers = handler.addMarkers(#{raw @hash.to_json});
+  :javascript
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(#{raw @hash.to_json}, { 'lat': 33.124592, 'lng': -117.325611});
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    });
