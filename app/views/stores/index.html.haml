@@ -5,7 +5,7 @@
     .notice.text-center= flash[:notice]
   .import
     %h1.text-center Find a Caribou Coffee Near You!
-    %p Submit a tab delimited (.tsv) file showing all stores you'd like to submit. We will return the nearest store store to Verve's Carlsbad office. If you'd like to see stores near another address, search using the address box below.Make sure the table headers are name, address, postal_code, latitude, longitude and includes this information for each store.
+    %p Submit a tab delimited (.tsv) file showing all stores you'd like to submit. We will return the nearest stores within 5 miles of Verve's Carlsbad office. If you'd like to see stores near another address, search using the address box below.Make sure the table headers are name, address, postal_code, latitude, longitude and includes this information for each store.
     = form_tag import_stores_path, multipart: true do
       = file_field_tag :file
       %br
@@ -19,36 +19,42 @@
         %br
         = text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Type address or coordinates here'
         %br
+        = number_field_tag :radius, params[:radius], class: 'form-control', placeholder: 'Type range (in miles) you would like to search', min: 5
+        %br
+        %br
         = submit_tag "Search Nearby Stores", :name => nil, class: 'btn btn-default'
         %hr
         -# Add in feature to search nearest with ## miles
   .stores.col-xs-12
-    %h3.text-center= "Caribou Coffee Stores Nearby #{@base_address}"
-    %br
-    %table.table.table-condensed.table-hover
-      %tr
-        %th Name
-        %th Address
-        %th Latitude
-        %th Longitude
-        %th Distance from Address
-      - for store in @stores
+    %h3.text-center= "Caribou Coffee Stores Near #{@base_address}"
+    - if @stores.empty?
+      %p.text-center= "Sorry, there are no stores near #{@base_address}. Please change your location or search radius."
+    -else
+      %br
+      %table.table.table-condensed.table-hover
         %tr
-          %td= store.name
-          %td= store.full_address
-          %td= store.latitude
-          %td= store.longitude
-          %td= "#{store.distance.round(2)} miles"
+          %th Name
+          %th Address
+          %th Latitude
+          %th Longitude
+          %th Distance from Address
+        - for store in @stores
+          %tr
+            %td= store.name
+            %td= store.full_address
+            %td= store.latitude
+            %td= store.longitude
+            %td= "#{store.distance.round(2)} miles"
     %hr
-  -# Google maps view
-  .col-md-6.col-md-offset-2.text-center{:style => "width: 800px;"}
-    %h3 Map View of Nearby Stores
-    %br
-    #map{:style => "width: 800px; height: 400px;"}
-    :javascript
-      handler = Gmaps.build('Google');
-      handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-        markers = handler.addMarkers(#{raw @hash.to_json});
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-      });
+  - if @stores.any?
+    .col-md-6.col-md-offset-2.text-center{:style => "width: 800px;"}
+      %h3 Map View of Nearby Stores
+      %br
+      #map{:style => "width: 800px; height: 400px;"}
+      :javascript
+        handler = Gmaps.build('Google');
+        handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+          markers = handler.addMarkers(#{raw @hash.to_json});
+          handler.bounds.extendWith(markers);
+          handler.fitMapToBounds();
+        });

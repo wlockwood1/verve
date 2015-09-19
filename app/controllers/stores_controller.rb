@@ -5,7 +5,11 @@ class StoresController < ApplicationController
     else
       @base_address = "5973 Avenida Encinas, Carlsbad, CA"
     end
-    @stores = Store.near(@base_address, 5, :order => "distance").limit(20)
+    if params[:radius].present?
+      @stores = Store.near(@base_address, params[:radius], :order => "distance").limit(20)
+    else
+      @stores = Store.near(@base_address, 5, :order => "distance").limit(20)
+    end
     @hash = Gmaps4rails.build_markers(@stores) do |store, marker|
       marker.lat store.latitude
       marker.lng store.longitude

@@ -14,14 +14,14 @@ Imagine that Verve has just received a new advertising campaign from a national 
 4. (Bonus Points) Provide an api to query for locations near a given latitude and longitude.
 
 #### Documentation
-* Only stores within a 5 mile radius of the Verve Wireless address or search address are listed. This could be changed by changing the '5' in the '@stores' instance variable in the stores controller. Distance between addresses is measured via Geocoder gem.
+* Only stores within a 5 mile radius of the Verve Wireless address or search address are listed. Users can change the radius they want to search within the search. Distance between addresses is measured via Geocoder gem.
 * While site says only .tsv files are accepted, app is built to accept both .csv and .tsv files
 * Store locations are shown on map using the gmaps4rails gem.
 * Files are imported via the Roo gem.
-* The sample file provided with the challenge will not display any locations because all the locations in the file are in Minnesota. The headers need to be updated, as well as the search address.
+* The sample file provided in the challenge repo will not display any locations because all the locations in the file are in Minnesota. Sample files 'san_diego_addresses.tsv' and 'verve_example_addresses.tsv' to test are located in the public folder.
 
-* Requirements for the headers in the tsv file are listed in the index page. The app will not be able to parse data if the headers are incorrect
-* Sample files 'san_diego_addresses.tsv' and 'verve_example_addresses.tsv' to test are located in the public folder.
+* Requirements for the headers in the tsv file are listed in the index page. The app will not be able to parse data if the header spellings are incorrect
+*
 
 
 #### Requirements to Run App

@@ -1,5 +1,5 @@
 class Store < ActiveRecord::Base
-  reverse_geocoded_by :latitude, :longitude, :address => :geocoded_address
+  reverse_geocoded_by :latitude, :longitude, :address => :geocoded_address #save geocoded address, but display will be address privided in file
   after_validation :reverse_geocode  # auto-fetch address
 
   def full_address
@@ -8,7 +8,7 @@ class Store < ActiveRecord::Base
 
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
-    header = spreadsheet.row(1)
+    header = spreadsheet.row(1).collect {|i| i.downcase} #Headers in tsv file don't have to be all lowercase
     valid_keys = ['name', 'address', 'postal_code', 'latitude', 'longitude']
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
