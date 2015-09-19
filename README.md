@@ -25,7 +25,7 @@ Imagine that Verve has just received a new advertising campaign from a national 
 
 
 #### Requirements to Run App
-Clone this repo
-Run bundle install - should be using Ruby 2.2.0
-Migrate database - should be using Postgresql
-Open project folder and run rails server
+1. Clone this repo
+2. Run bundle install - should be using Ruby 2.2.0
+3. Migrate database - should be using Postgresql
+4. Open project folder and run rails server
