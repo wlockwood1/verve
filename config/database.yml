@@ -1,0 +1,20 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: verve_development
+  pool: 5
+  port: 5432
+  timeout: 5000
+  host: localhost
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test: &test
+  adapter: postgresql
+  encoding: unicode
+  database: verve_test
+  pool: 5
+  port: 5432
+  timeout: 5000
+  host: localhost

@@ -27,7 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'geocoder'
 # Parse tsv files
 gem 'roo'
-# Display Google Maps with markes for stores
+# Display Google Maps with markers for stores
 gem 'gmaps4rails'
 gem 'underscore-rails'
 # Use ActiveModel has_secure_password
