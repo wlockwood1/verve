@@ -14,7 +14,7 @@ Imagine that Verve has just received a new advertising campaign from a national 
 4. (Bonus Points) Provide an api to query for locations near a given latitude and longitude.
 
 #### Documentation
-* Only stores within a 5 mile radius of the Verve Wireless address or search address are listed. Users can change the radius they want to search within the search. Distance between addresses is measured via Geocoder gem.
+* Only stores within a 5 mile radius of the Verve Wireless address or search address are listed. Users can change the radius they want to search if necessary. Distance between addresses is measured via Geocoder gem.
 * While site says only .tsv files are accepted, app is built to accept both .csv and .tsv files
 * Store locations are shown on map using the gmaps4rails gem.
 * Files are imported via the Roo gem.
