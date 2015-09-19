@@ -9,10 +9,11 @@ class Store < ActiveRecord::Base
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
+    valid_keys = ['name', 'address', 'postal_code', 'latitude', 'longitude']
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
       store = find_by_id(row["id"]) || new
-      store.attributes = row.to_hash.slice('name', 'address', 'postal_code', 'latitude', 'longitude')
+      store.attributes = row.to_hash.slice(*valid_keys)
       store.save!
     end
   end
