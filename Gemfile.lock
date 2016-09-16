@@ -85,6 +85,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    markerclustererplus-rails (2.1.2.1)
     method_source (0.8.2)
     mime-types (2.6.2)
     mini_portile (0.6.2)
@@ -198,6 +199,7 @@ DEPENDENCIES
   haml-rails (~> 0.7.0)
   jbuilder (~> 2.0)
   jquery-rails
+  markerclustererplus-rails
   pg
   pry
   rails (= 4.2.1)
